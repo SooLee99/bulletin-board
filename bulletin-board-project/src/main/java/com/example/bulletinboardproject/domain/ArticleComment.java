@@ -22,6 +22,7 @@ import java.util.Objects;
 })
 @EntityListeners(AuditingEntityListener.class)
 @Entity
+// (1) Article 클래스: '게시판 댓글' 도메인(구조)를 자바 클래스로 표현.
 public class ArticleComment {
 
     @Id
@@ -29,7 +30,10 @@ public class ArticleComment {
     private Long id;
 
     @Setter
-    @ManyToOne(optional = false) private Article article; // 게시글 (ID)
+    @ManyToOne(optional = false)
+    // @ManyToOne : N:1 관계로 설정.
+    // Article 객체를 이용 => "객체 지향" 으로 외래 키를 설계함.
+    private Article article; // 게시글 (ID)
     @Setter @Column(nullable = false, length = 500) private String content; // 본문
 
     @CreatedDate
@@ -63,5 +67,4 @@ public class ArticleComment {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }

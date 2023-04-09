@@ -4,13 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -24,11 +17,10 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
 // (1) Article 클래스: '게시판' 도메인(구조)를 자바 클래스로 표현.
 // => id, title, content, hashtag, createdAt, createdBy, modifiedAt, modifiedBy
-public class Article {
+public class Article extends AuditingFields {
     // @Column : 객체 필드를 테이블의 컬럼에 매핑시켜주는 어노테이션입니다.
 
     @Id
@@ -52,11 +44,6 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     // @OneToMany : 양방향 바인딩 -> 1:N 관계 (게시판 : 게시글 안에 댓글)를 표현.
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
-
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
-    @CreatedBy @Column(nullable = false, length = 100) private String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
 
     // 기본 생성자 : 평소에 오픈을 하지 않을 예정이기 때문에 protected로 지정.
     protected Article() {}

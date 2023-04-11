@@ -1,4 +1,5 @@
 package com.example.bulletinboardproject.controller;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

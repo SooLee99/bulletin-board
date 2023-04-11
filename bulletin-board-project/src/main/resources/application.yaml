@@ -16,7 +16,7 @@ spring:
     url: jdbc:mysql://localhost:3311/board
     username: root
     password: 1234
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: create

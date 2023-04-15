@@ -1,7 +1,6 @@
 package com.example.bulletinboardproject.controller;
 
-
-import com.fastcampus.projectboard.config.SecurityConfig;
+import com.example.bulletinboardproject.config.SecurityConfig;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

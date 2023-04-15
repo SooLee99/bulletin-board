@@ -1,12 +1,14 @@
 package com.example.bulletinboardproject.domain;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+
 
 @Getter
 @ToString
@@ -28,6 +30,7 @@ public class Article extends AuditingFields {
     // IDENTITY 전략은 기본 키 생성을 데이터베이스에 위임하는 전략입니다.
     // ex) MySQL의 AUTO_INCREMENT 기능은 데이터베이스가 기본 키를 자동으로 생성해준다.
     // => id가 null일 경우 해당 객체의 Id를 DB의 AUTO_INCREMENT를 가져와 할당한다.
+
     private Long id;
     // Setter을 각 필드로 제한을 두는 이유 : 이용자가 특정 필드의 접근을 막고자 하기 때문.
     // => 자동으로 번호를 부여하기 때문.
@@ -39,10 +42,13 @@ public class Article extends AuditingFields {
     @ToString.Exclude
     // @ToString.Exclude : 게시글에서 댓글을 볼 때,
     //                     순환 참조가 될 수 있기 때문에 둘 중 하나의 연결 고리를 끊어줌.
+
     @OrderBy("id")
     // @OrderBy("id") : 게시글 id 순서대로 배치.
+
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     // @OneToMany : 양방향 바인딩 -> 1:N 관계 (게시판 : 게시글 안에 댓글)를 표현.
+
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
     // 기본 생성자 : 평소에 오픈을 하지 않을 예정이기 때문에 protected로 지정.

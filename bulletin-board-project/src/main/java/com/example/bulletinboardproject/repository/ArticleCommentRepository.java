@@ -1,10 +1,14 @@
 package com.example.bulletinboardproject.repository;
 
 import com.example.bulletinboardproject.domain.ArticleComment;
+import com.example.bulletinboardproject.domain.QArticleComment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import com.querydsl.core.types.dsl.StringExpression;
+import com.querydsl.core.types.dsl.DateTimeExpression;
 
 @RepositoryRestResource
 // - @RepositoryRestResource : Spring Boot Data REST에서 지원하는 어노테이션.

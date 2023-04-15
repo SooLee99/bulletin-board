@@ -1,11 +1,14 @@
 package com.example.bulletinboardproject.repository;
 
 import com.example.bulletinboardproject.domain.Article;
+import com.example.bulletinboardproject.domain.QArticle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import com.querydsl.core.types.dsl.StringExpression;
+import com.querydsl.core.types.dsl.DateTimeExpression;
 
 @RepositoryRestResource
 public interface ArticleRepository extends
